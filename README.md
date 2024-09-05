@@ -72,7 +72,7 @@ murder-mystery-game/
 │   │   └── ... (other components)
 │   │
 │   ├── context/
-│   │   └── GameContext.tsx
+│   │   └── game-context.tsx
 │   │
 │   ├── types/
 │   │   └── index.ts
