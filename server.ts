@@ -10,7 +10,7 @@ import type {
 	ClientToServerEvents,
 	InterServerEvents,
 	SocketData,
-} from "./src/lib/types";
+} from "./src/types";
 
 const PORT = 3001;
 

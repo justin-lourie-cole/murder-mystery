@@ -1,4 +1,3 @@
-// EndGameDialog.tsx
 import { Button } from "@/components/ui/button";
 import {
 	Dialog,
@@ -7,7 +6,7 @@ import {
 	DialogTitle,
 	DialogFooter,
 } from "@/components/ui/dialog";
-import { useGame } from "@/lib/game-context";
+import { useGame } from "@/context/game-context";
 
 export default function EndGameDialog() {
 	const { showEndGameDialog, setShowEndGameDialog, winners, murderer } =

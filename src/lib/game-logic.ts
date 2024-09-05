@@ -1,6 +1,6 @@
 // src/lib/game-logic.ts
 
-import type { GameState, Character, Player } from "./types";
+import type { GameState, Character, Player } from "@/types";
 
 export const characters: Character[] = [
 	{

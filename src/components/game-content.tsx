@@ -1,6 +1,4 @@
-// GameContent.tsx
-
-import { useGame } from "@/lib/game-context";
+import { useGame } from "@/context/game-context";
 import PlayerList from "./player-list";
 import CluesList from "./clue-list";
 import CharacterList from "./character-list";

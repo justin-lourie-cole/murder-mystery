@@ -1,5 +1,3 @@
-"use client";
-
 import type React from "react";
 import {
 	createContext,
@@ -14,7 +12,7 @@ import type {
 	ClientToServerEvents,
 	GameState,
 	Player,
-} from "./types";
+} from "@/types";
 
 const SOCKET_SERVER_URL = "http://localhost:3001";
 

@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { useGame } from "@/lib/game-context";
+import { useGame } from "@/context/game-context";
 import type { Character } from "@/lib/types";
 
 export default function CharacterList() {

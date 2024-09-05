@@ -1,4 +1,4 @@
-import { GameProvider, useGame } from "@/lib/game-context";
+import { GameProvider, useGame } from "@/context/game-context";
 import JoinGame from "./join-game";
 import PlayerList from "./player-list";
 import CluesList from "./clue-list";

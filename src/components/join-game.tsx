@@ -1,6 +1,5 @@
-// JoinGame.tsx
 import React from "react";
-import { useGame } from "@/lib/game-context";
+import { useGame } from "@/context/game-context";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";

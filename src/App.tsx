@@ -4,7 +4,6 @@ import { ProtectedRoute } from "./components/protected-route";
 import { GameMasterApp } from "./components/game-master-app";
 
 function App() {
-	// This should be determined by your authentication logic
 	const isGameMaster = true;
 
 	return (
