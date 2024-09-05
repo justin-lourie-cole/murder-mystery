@@ -1,50 +1,113 @@
-# React + TypeScript + Vite
+# Murder Mystery Game
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A real-time multiplayer murder mystery game built with React, Socket.IO, and Node.js.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Real-time multiplayer gameplay
+- Role-based access (Players and Game Master)
+- Dynamic clue revelation
+- Voting system
+- End-game results display
 
-## Expanding the ESLint configuration
+## Prerequisites
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- Node.js (v14.0.0 or later)
+- npm (v6.0.0 or later)
 
-- Configure the top-level `parserOptions` property like this:
+## Installation
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+1. Clone the repository:
+
+   ```bash
+   git clone [https://github.com/yourusername/murder-mystery-game.git](https://github.com/yourusername/murder-mystery-game.git)
+
+   ```
+
+2. Navigate to the project directory:
+
+   ```bash
+   cd murder-mystery-game
+   ```
+
+3. Install the dependencies:
+
+   ```bash
+   npm install
+   ```
+
+4. Create a `.env` file in the root directory and add:
+
+   ```bash
+   npm run dev
+   ```
+
+5. Start the Socket.IO server:
+
+   ```bash
+   npm run server
+   ```
+
+6. Open your browser and go to `http://localhost:5173` to access the game.
+
+7. For the Game Master interface, go to `http://localhost:5173/gamemaster` and use the password specified in `GameMasterApp.tsx`.
+
+## Game Rules
+
+1. The Game Master reveals clues one by one.
+2. Players discuss and try to deduce the murderer based on the clues.
+3. When voting opens, each player can cast a vote for the suspected murderer.
+4. The game ends when all players have voted or when the Game Master ends the game.
+5. Winners are the players who correctly identified the murderer.
+
+## Project Structure
+
+```css
+murder-mystery-game/
+│
+├── src/
+│   ├── components/
+│   │   ├── PlayerApp.tsx
+│   │   ├── GameMasterApp.tsx
+│   │   └── ... (other components)
+│   │
+│   ├── context/
+│   │   └── GameContext.tsx
+│   │
+│   ├── types/
+│   │   └── index.ts
+│   │
+│   ├── App.tsx
+│   └── main.tsx
+│
+├── server/
+│   └── index.ts
+│
+├── .gitignore
+├── package.json
+├── README.md
+└── vite.config.ts
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+## Technologies Used
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+- React
+- TypeScript
+- Vite
+- Socket.IO
+- Node.js
+- Express
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+## Contributing
+
+Contributions are welcome! Please follow these steps:
+
+1. Fork the repository
+2. Create a new branch: `git checkout -b feature-branch-name`
+3. Make your changes and commit them: `git commit -m 'Add some feature'`
+4. Push to the branch: `git push origin feature-branch-name`
+5. Create a pull request
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
