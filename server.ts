@@ -1,6 +1,3 @@
-// server.ts
-
-import { GameManager, characters, clues } from "./src/lib/game-logic";
 import express from "express";
 import { createServer } from "node:http";
 import { Server, type Socket } from "socket.io";
@@ -11,6 +8,7 @@ import type {
 	InterServerEvents,
 	SocketData,
 } from "./src/types";
+import { characters, clues, GameManager } from "./src/game";
 
 const PORT = 3001;
 

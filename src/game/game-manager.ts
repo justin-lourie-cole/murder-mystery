@@ -1,26 +1,5 @@
 import type { GameState, Character, Player } from "@/types";
 
-export const characters: Character[] = [
-	{
-		name: "Gordon",
-		weapon: "The Whiteboard Wipe",
-		room: "The Creative Corner",
-		backstory:
-			"Gordon is the Creative Director who believes he's a modern-day Picasso, but his ideas are more like finger paintings.",
-		motive:
-			"When the victim accidentally spilled coffee on Gordon's latest 'masterpiece', Gordon panicked and used the Whiteboard Wipe to erase the evidence... and the victim!",
-	},
-	// Add other characters here...
-];
-
-export const clues = [
-	"A coffee-stained whiteboard was found near the crime scene.",
-	"The victim was last seen entering the Creative Corner.",
-	"Traces of erasable marker ink were found on the victim's clothes.",
-	"An overheard argument about 'ruining a masterpiece' occurred just before the murder.",
-	"The murder weapon appears to be a common office supply item.",
-];
-
 export class GameManager {
 	private gameState: GameState;
 	private players: Map<string, Player>;

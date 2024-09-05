@@ -77,6 +77,12 @@ murder-mystery-game/
 │   ├── types/
 │   │   └── index.ts
 │   │
+│   ├── game/
+│   │   ├── characters.ts
+│   │   ├── clues.ts
+│   │   ├── GameManager.ts
+│   │   └── index.ts
+│   │
 │   ├── App.tsx
 │   └── main.tsx
 │
