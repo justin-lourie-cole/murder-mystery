@@ -67,8 +67,8 @@ murder-mystery-game/
 │
 ├── src/
 │   ├── components/
-│   │   ├── PlayerApp.tsx
-│   │   ├── GameMasterApp.tsx
+│   │   ├── player-app.tsx
+│   │   ├── game-master-app.tsx
 │   │   └── ... (other components)
 │   │
 │   ├── context/
@@ -80,7 +80,7 @@ murder-mystery-game/
 │   ├── game/
 │   │   ├── characters.ts
 │   │   ├── clues.ts
-│   │   ├── GameManager.ts
+│   │   ├── game-manager.ts
 │   │   └── index.ts
 │   │
 │   ├── App.tsx
