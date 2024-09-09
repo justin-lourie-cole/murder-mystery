@@ -12,7 +12,9 @@ import type {
 	ClientToServerEvents,
 	GameState,
 	Player,
+	ChatMessage,
 } from "@/types";
+import { useToast } from "@/hooks/use-toast";
 
 const SOCKET_SERVER_URL = "http://localhost:3001";
 
@@ -20,11 +22,13 @@ interface GameContextType {
 	gameState: GameState | null;
 	players: Player[];
 	isJoined: boolean;
+	isGameMaster: boolean;
 	votingOpen: boolean;
 	winners: Player[];
 	murderer: string | null;
 	showEndGameDialog: boolean;
 	joinGame: (playerName: string) => void;
+	joinAsGameMaster: () => void;
 	revealClue: () => void;
 	openVoting: () => void;
 	vote: (characterName: string) => void;
@@ -32,6 +36,8 @@ interface GameContextType {
 	resetGame: () => void;
 	setShowEndGameDialog: (show: boolean) => void;
 	fetchGameState: () => void;
+	sendChatMessage: (content: string) => void;
+	chatMessages: ChatMessage[];
 }
 
 const GameContext = createContext<GameContextType | undefined>(undefined);
@@ -52,10 +58,14 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
 	const [gameState, setGameState] = useState<GameState | null>(null);
 	const [players, setPlayers] = useState<Player[]>([]);
 	const [isJoined, setIsJoined] = useState(false);
+	const [isGameMaster, setIsGameMaster] = useState(false);
 	const [votingOpen, setVotingOpen] = useState(false);
 	const [winners, setWinners] = useState<Player[]>([]);
 	const [murderer, setMurderer] = useState<string | null>(null);
 	const [showEndGameDialog, setShowEndGameDialog] = useState(false);
+	const [chatMessages, setChatMessages] = useState<ChatMessage[]>([]);
+
+	const { toast } = useToast();
 
 	useEffect(() => {
 		const newSocket = io(SOCKET_SERVER_URL, {
@@ -113,6 +123,24 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
 			setShowEndGameDialog(false);
 		});
 
+		socket.on("gameMasterConfirmation", () => {
+			setIsGameMaster(true);
+			setIsJoined(true);
+		});
+
+		socket.on("error", (message: string) => {
+			console.error("Socket error:", message);
+			toast({
+				title: "Error",
+				description: message,
+				variant: "destructive",
+			});
+		});
+
+		socket.on("chatMessage", (message: ChatMessage) => {
+			setChatMessages((prevMessages) => [...prevMessages, message]);
+		});
+
 		return () => {
 			socket.off("gameState");
 			socket.off("playerList");
@@ -121,8 +149,11 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
 			socket.off("votesUpdated");
 			socket.off("gameEnded");
 			socket.off("gameReset");
+			socket.off("gameMasterConfirmation");
+			socket.off("chatMessage");
+			socket.off("error");
 		};
-	}, [socket]);
+	}, [socket, toast]);
 
 	const fetchGameState = useCallback(() => {
 		if (socket) {
@@ -141,6 +172,12 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
 		},
 		[socket],
 	);
+
+	const joinAsGameMaster = useCallback(() => {
+		if (socket) {
+			socket.emit("joinAsGameMaster");
+		}
+	}, [socket]);
 
 	const revealClue = useCallback(() => {
 		if (socket) {
@@ -175,15 +212,26 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
 		}
 	}, [socket]);
 
+	const sendChatMessage = useCallback(
+		(content: string) => {
+			if (socket) {
+				socket.emit("sendChatMessage", content);
+			}
+		},
+		[socket],
+	);
+
 	const value = {
 		gameState,
 		players,
 		isJoined,
+		isGameMaster,
 		votingOpen,
 		winners,
 		murderer,
 		showEndGameDialog,
 		joinGame,
+		joinAsGameMaster,
 		revealClue,
 		openVoting,
 		vote,
@@ -191,6 +239,8 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
 		resetGame,
 		setShowEndGameDialog,
 		fetchGameState,
+		sendChatMessage,
+		chatMessages,
 	};
 
 	return <GameContext.Provider value={value}>{children}</GameContext.Provider>;

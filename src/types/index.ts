@@ -26,6 +26,13 @@ export interface GameEndResult {
 	murderer: string;
 }
 
+export interface ChatMessage {
+	id: string;
+	sender: string;
+	content: string;
+	timestamp: number;
+}
+
 export interface ServerToClientEvents {
 	gameState: (state: GameState) => void;
 	playerList: (players: Player[]) => void;
@@ -34,6 +41,9 @@ export interface ServerToClientEvents {
 	votesUpdated: (votes: Record<string, string>) => void;
 	gameEnded: (result: GameEndResult) => void;
 	gameReset: (newGameState: GameState) => void;
+	gameMasterConfirmation: () => void;
+	error: (message: string) => void;
+	chatMessage: (message: ChatMessage) => void;
 }
 
 export interface ClientToServerEvents {
@@ -44,6 +54,8 @@ export interface ClientToServerEvents {
 	endGame: () => void;
 	resetGame: () => void;
 	getGameState: (callback: (gameState: GameState) => void) => void;
+	joinAsGameMaster: () => void;
+	sendChatMessage: (content: string) => void;
 }
 
 export interface InterServerEvents {

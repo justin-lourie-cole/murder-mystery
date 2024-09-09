@@ -123,4 +123,8 @@ export class GameManager {
 	allCluesRevealed(): boolean {
 		return this.gameState.revealedClues.length === this.clues.length;
 	}
+
+	getPlayerById(playerId: string): Player | undefined {
+		return this.players.get(playerId);
+	}
 }

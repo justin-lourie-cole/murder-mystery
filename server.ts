@@ -2,11 +2,13 @@ import express from "express";
 import { createServer } from "node:http";
 import { Server, type Socket } from "socket.io";
 import cors from "cors";
+import { v4 as uuidv4 } from "uuid";
 import type {
 	ServerToClientEvents,
 	ClientToServerEvents,
 	InterServerEvents,
 	SocketData,
+	ChatMessage,
 } from "./src/types";
 import { characters, clues, GameManager } from "./src/game";
 
@@ -30,6 +32,7 @@ const io = new Server<
 });
 
 const gameManager = new GameManager(characters, clues);
+let gameMasterId: string | null = null;
 
 function checkGameEnd() {
 	if (gameManager.allPlayersVoted() || gameManager.allCluesRevealed()) {
@@ -43,7 +46,23 @@ function checkGameEnd() {
 io.on("connection", (socket: Socket) => {
 	console.log("A user connected");
 
+	socket.on("joinAsGameMaster", () => {
+		if (gameMasterId) {
+			socket.emit("error", "Game Master already exists");
+			return;
+		}
+		gameMasterId = socket.id;
+		socket.emit("gameMasterConfirmation");
+		socket.emit("gameState", gameManager.getGameState());
+		io.emit("playerList", gameManager.getPlayers());
+		console.log("Game Master joined");
+	});
+
 	socket.on("joinGame", (playerName) => {
+		if (socket.id === gameMasterId) {
+			socket.emit("error", "Game Master cannot join as a player");
+			return;
+		}
 		try {
 			gameManager.addPlayer(socket.id, playerName);
 			socket.emit("gameState", gameManager.getGameState());
@@ -66,6 +85,10 @@ io.on("connection", (socket: Socket) => {
 	});
 
 	socket.on("revealClue", () => {
+		if (socket.id !== gameMasterId) {
+			socket.emit("error", "Only the Game Master can reveal clues");
+			return;
+		}
 		try {
 			const newClue = gameManager.revealNextClue();
 			if (newClue) {
@@ -80,6 +103,10 @@ io.on("connection", (socket: Socket) => {
 	});
 
 	socket.on("openVoting", () => {
+		if (socket.id !== gameMasterId) {
+			socket.emit("error", "Only the Game Master can open voting");
+			return;
+		}
 		try {
 			gameManager.openVoting();
 			io.emit("votingOpened");
@@ -126,13 +153,41 @@ io.on("connection", (socket: Socket) => {
 		}
 	});
 
+	socket.on("sendChatMessage", (content: string) => {
+		try {
+			const player = gameManager.getPlayerById(socket.id);
+			if (!player) {
+				socket.emit("error", "Player not found");
+				return;
+			}
+			const chatMessage: ChatMessage = {
+				id: uuidv4(),
+				sender: player.name,
+				content,
+				timestamp: Date.now(),
+			};
+
+			console.log(chatMessage);
+
+			io.emit("chatMessage", chatMessage);
+		} catch (error) {
+			console.error("Error sending chat message:", error);
+			socket.emit("error", "Failed to send chat message");
+		}
+	});
+
 	socket.on("disconnect", () => {
 		console.log("User disconnected");
-		try {
-			gameManager.removePlayer(socket.id);
-			io.emit("playerList", gameManager.getPlayers());
-		} catch (error) {
-			console.error("Error removing player:", error);
+		if (socket.id === gameMasterId) {
+			gameMasterId = null;
+			console.log("Game Master disconnected");
+		} else {
+			try {
+				gameManager.removePlayer(socket.id);
+				io.emit("playerList", gameManager.getPlayers());
+			} catch (error) {
+				console.error("Error removing player:", error);
+			}
 		}
 	});
 });
