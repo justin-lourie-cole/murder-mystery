@@ -8,33 +8,40 @@ import {
 } from "@/components/ui/dialog";
 import { useGame } from "@/hooks/use-game";
 
-export default function EndGameDialog() {
+export function EndGameDialog() {
 	const { showEndGameDialog, setShowEndGameDialog, winners, murderer } =
 		useGame();
 
 	return (
 		<Dialog open={showEndGameDialog} onOpenChange={setShowEndGameDialog}>
-			<DialogContent>
+			<DialogContent className="bg-dark-green border-2 border-gold">
 				<DialogHeader>
-					<DialogTitle>Game Results</DialogTitle>
+					<DialogTitle className="text-3xl text-gold font-serif">
+						Game Results
+					</DialogTitle>
 				</DialogHeader>
-				<div>
-					<p>The murderer was: {murderer}</p>
+				<div className="text-light-gold">
+					<p className="text-xl">The murderer was: {murderer}</p>
 					{winners.length > 0 ? (
 						<>
-							<p>The winners are:</p>
-							<ul>
+							<p className="text-xl mt-4">The winners are:</p>
+							<ul className="list-disc list-inside">
 								{winners.map((winner) => (
 									<li key={winner.id}>{winner.name}</li>
 								))}
 							</ul>
 						</>
 					) : (
-						<p>No one guessed correctly!</p>
+						<p className="text-xl mt-4">No one guessed correctly!</p>
 					)}
 				</div>
 				<DialogFooter>
-					<Button onClick={() => setShowEndGameDialog(false)}>Close</Button>
+					<Button
+						onClick={() => setShowEndGameDialog(false)}
+						className="bg-gold text-dark-green hover:bg-light-gold font-serif"
+					>
+						Close
+					</Button>
 				</DialogFooter>
 			</DialogContent>
 		</Dialog>

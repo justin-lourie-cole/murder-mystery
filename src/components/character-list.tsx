@@ -3,7 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useGame } from "@/hooks/use-game";
 import type { Character } from "@/types";
 
-export default function CharacterList() {
+export function CharacterList() {
 	const { gameState, votingOpen, vote } = useGame();
 
 	if (!gameState) return null;
@@ -13,25 +13,33 @@ export default function CharacterList() {
 	};
 
 	return (
-		<Card>
+		<Card className="border-2 border-gold bg-dark-green">
 			<CardHeader>
-				<CardTitle>Characters</CardTitle>
+				<CardTitle className="text-2xl text-gold font-serif">
+					Characters
+				</CardTitle>
 			</CardHeader>
 			<CardContent>
 				<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
 					{gameState.characters.map((character: Character) => (
-						<Card key={character.name}>
+						<Card
+							key={character.name}
+							className="border-2 border-gold bg-dark-green"
+						>
 							<CardHeader>
-								<CardTitle>{character.name}</CardTitle>
+								<CardTitle className="text-xl text-gold font-serif">
+									{character.name}
+								</CardTitle>
 							</CardHeader>
 							<CardContent>
-								<p>
-									<strong>Backstory:</strong> {character.backstory}
+								<p className="text-light-gold">
+									<strong className="text-gold">Backstory:</strong>{" "}
+									{character.backstory}
 								</p>
 								{votingOpen && (
 									<Button
 										onClick={() => handleVote(character.name)}
-										className="mt-2 w-full"
+										className="mt-2 w-full bg-gold text-dark-green hover:bg-light-gold font-serif"
 									>
 										Vote for {character.name}
 									</Button>
