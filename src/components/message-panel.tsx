@@ -1,12 +1,13 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { useGame } from "@/context/game-context";
+import { useGame } from "@/hooks/use-game";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { SendIcon } from "lucide-react";
+import type { ChatMessage } from "@/types";
 
 export function MessagePanel() {
 	const { chatMessages, sendChatMessage } = useGame();
@@ -17,7 +18,7 @@ export function MessagePanel() {
 		if (scrollAreaRef.current) {
 			scrollAreaRef.current.scrollTop = scrollAreaRef.current.scrollHeight;
 		}
-	}, [chatMessages]);
+	}, []);
 
 	const handleSendMessage = () => {
 		if (message.trim()) {
@@ -35,7 +36,7 @@ export function MessagePanel() {
 			</CardHeader>
 			<CardContent className="flex-grow flex flex-col p-4">
 				<ScrollArea className="flex-grow mb-4 pr-4" ref={scrollAreaRef}>
-					{chatMessages.map((msg) => (
+					{chatMessages?.map((msg: ChatMessage) => (
 						<div key={msg.id} className="mb-4">
 							<p className="text-gold font-serif">{msg.sender}</p>
 							<div className="bg-light-gold/20 p-2 rounded-lg mt-1">

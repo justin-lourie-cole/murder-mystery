@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import { useGame } from "@/hooks/use-game";
 
-export default function GameControls() {
+export function GameControls() {
 	const { openVoting, endGame, resetGame, votingOpen, gameState } = useGame();
 	const { toast } = useToast();
 

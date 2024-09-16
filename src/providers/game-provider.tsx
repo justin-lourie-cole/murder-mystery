@@ -1,5 +1,7 @@
 import { GameContext } from "@/context/game-context";
+import { toast } from "@/hooks/use-toast";
 import type {
+	ChatMessage,
 	ClientToServerEvents,
 	GameState,
 	Player,
@@ -18,10 +20,12 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
 	const [gameState, setGameState] = useState<GameState | null>(null);
 	const [players, setPlayers] = useState<Player[]>([]);
 	const [isJoined, setIsJoined] = useState(false);
+	const [isGameMaster, setIsGameMaster] = useState(false);
 	const [votingOpen, setVotingOpen] = useState(false);
 	const [winners, setWinners] = useState<Player[]>([]);
 	const [murderer, setMurderer] = useState<string | null>(null);
 	const [showEndGameDialog, setShowEndGameDialog] = useState(false);
+	const [chatMessages, setChatMessages] = useState<ChatMessage[]>([]);
 
 	useEffect(() => {
 		const newSocket = io(SOCKET_SERVER_URL, {
@@ -79,6 +83,24 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
 			setShowEndGameDialog(false);
 		});
 
+		socket.on("gameMasterConfirmation", () => {
+			setIsGameMaster(true);
+			setIsJoined(true);
+		});
+
+		socket.on("error", (message: string) => {
+			console.error("Socket error:", message);
+			toast({
+				title: "Error",
+				description: message,
+				variant: "destructive",
+			});
+		});
+
+		socket.on("chatMessage", (message: ChatMessage) => {
+			setChatMessages((prevMessages) => [...prevMessages, message]);
+		});
+
 		return () => {
 			socket.off("gameState");
 			socket.off("playerList");
@@ -87,6 +109,9 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
 			socket.off("votesUpdated");
 			socket.off("gameEnded");
 			socket.off("gameReset");
+			socket.off("gameMasterConfirmation");
+			socket.off("chatMessage");
+			socket.off("error");
 		};
 	}, [socket]);
 
@@ -107,6 +132,12 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
 		},
 		[socket],
 	);
+
+	const joinAsGameMaster = useCallback(() => {
+		if (socket) {
+			socket.emit("joinAsGameMaster");
+		}
+	}, [socket]);
 
 	const revealClue = useCallback(() => {
 		if (socket) {
@@ -141,6 +172,15 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
 		}
 	}, [socket]);
 
+	const sendChatMessage = useCallback(
+		(content: string) => {
+			if (socket) {
+				socket.emit("sendChatMessage", content);
+			}
+		},
+		[socket],
+	);
+
 	const value = {
 		gameState,
 		players,
@@ -157,6 +197,10 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
 		resetGame,
 		setShowEndGameDialog,
 		fetchGameState,
+		chatMessages,
+		sendChatMessage,
+		isGameMaster,
+		joinAsGameMaster,
 	};
 
 	return <GameContext.Provider value={value}>{children}</GameContext.Provider>;

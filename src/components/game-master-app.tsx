@@ -37,7 +37,7 @@ export function GameMasterApp() {
 	useEffect(() => {
 		console.log("Joining as gameMaster");
 		joinAsGameMaster();
-	}, []);
+	}, [joinAsGameMaster]);
 
 	const handleRevealClue = () => {
 		if (gameState && gameState.revealedClues.length < 5) {

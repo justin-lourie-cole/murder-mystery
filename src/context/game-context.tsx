@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import type { GameState, Player } from "@/types";
+import type { ChatMessage, GameState, Player } from "@/types";
 
 interface GameContextType {
 	gameState: GameState | null;
@@ -20,7 +20,7 @@ interface GameContextType {
 	setShowEndGameDialog: (show: boolean) => void;
 	fetchGameState: () => void;
 	sendChatMessage: (content: string) => void;
-	chatMessages: ChatMessage[];
+	chatMessages: ChatMessage[] | null;
 }
 
 export const GameContext = createContext<GameContextType | undefined>(
