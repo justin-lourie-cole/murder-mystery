@@ -6,7 +6,7 @@ import {
 	DialogTitle,
 	DialogFooter,
 } from "@/components/ui/dialog";
-import { useGame } from "@/context/game-context";
+import { useGame } from "@/hooks/use-game";
 
 export default function EndGameDialog() {
 	const { showEndGameDialog, setShowEndGameDialog, winners, murderer } =

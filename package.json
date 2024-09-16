@@ -8,7 +8,10 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "server": "tsx server.ts"
+    "server": "tsx server.ts",
+    "test": "vitest",
+    "test:watch": "vitest --watch",
+    "test:coverage": "vitest run --coverage"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.1",
@@ -28,12 +31,15 @@
     "react-router-dom": "^6.26.1",
     "socket.io": "^4.7.5",
     "socket.io-client": "^4.7.5",
+    "supertest": "^7.0.0",
     "tailwind-merge": "^2.5.2",
     "tailwindcss-animate": "^1.0.7",
     "tsx": "^4.19.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.9.0",
+    "@testing-library/jest-dom": "^6.5.0",
+    "@testing-library/react": "^16.0.1",
     "@types/express": "^4.17.21",
     "@types/node": "^22.5.4",
     "@types/react": "^18.3.3",
@@ -48,6 +54,7 @@
     "tailwindcss": "^3.4.10",
     "typescript": "^5.5.3",
     "typescript-eslint": "^8.0.1",
-    "vite": "^5.4.1"
+    "vite": "^5.4.5",
+    "vitest": "^2.1.1"
   }
 }

@@ -3,10 +3,10 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
 import { useToast } from "@/hooks/use-toast";
-import { GameProvider, useGame } from "@/context/game-context";
+import { useGame } from "@/hooks/use-game";
 import { useEffect } from "react";
 
-function GameMasterContent() {
+export function GameMasterApp() {
 	const {
 		gameState,
 		players,
@@ -45,7 +45,7 @@ function GameMasterContent() {
 
 	useEffect(() => {
 		fetchGameState();
-	}, []);
+	}, [fetchGameState]);
 
 	if (!gameState) {
 		return <div>Loading...</div>;
@@ -149,13 +149,5 @@ function GameMasterContent() {
 				</Card>
 			)}
 		</div>
-	);
-}
-
-export function GameMasterApp() {
-	return (
-		<GameProvider>
-			<GameMasterContent />
-		</GameProvider>
 	);
 }

@@ -1,5 +1,5 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { useGame } from "@/context/game-context";
+import { useGame } from "@/hooks/use-game";
 
 export default function PlayerList() {
 	const { players } = useGame();

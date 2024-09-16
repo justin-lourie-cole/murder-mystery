@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { useGame } from "@/context/game-context";
-import type { Character } from "@/lib/types";
+import { useGame } from "@/hooks/use-game";
+import type { Character } from "@/types";
 
 export default function CharacterList() {
 	const { gameState, votingOpen, vote } = useGame();

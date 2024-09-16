@@ -1,4 +1,4 @@
-import { useGame } from "@/context/game-context";
+import { useGame } from "@/hooks/use-game";
 import PlayerList from "./player-list";
 import CluesList from "./clue-list";
 import CharacterList from "./character-list";

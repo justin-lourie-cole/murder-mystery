@@ -1,4 +1,4 @@
-import { GameProvider, useGame } from "@/context/game-context";
+import { useGame } from "@/hooks/use-game";
 import JoinGame from "./join-game";
 import PlayerList from "./player-list";
 import CluesList from "./clue-list";
@@ -6,7 +6,7 @@ import { Separator } from "./ui/separator";
 import CharacterList from "./character-list";
 import EndGameDialog from "./end-game-dialog";
 
-function PlayerContent() {
+export function PlayerApp() {
 	const { gameState, isJoined } = useGame();
 
 	if (!isJoined) {
@@ -29,13 +29,5 @@ function PlayerContent() {
 			<CharacterList />
 			<EndGameDialog />
 		</div>
-	);
-}
-
-export function PlayerApp() {
-	return (
-		<GameProvider>
-			<PlayerContent />
-		</GameProvider>
 	);
 }

@@ -1,6 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { useGame } from "@/context/game-context";
+import { useGame } from "@/hooks/use-game";
 
 export default function CluesList() {
 	const { gameState } = useGame();

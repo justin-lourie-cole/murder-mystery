@@ -16,10 +16,10 @@ export class GameManager {
 			revealedClues: [],
 			votes: {},
 		};
-		this.players = new Map();
+		this.players = new Map<string, Player>();
 		this.revealedClueCount = 0;
 		this.votingOpen = false;
-		this.murderer = this.selectRandomMurderer();
+		this.murderer = this.selectMurderer();
 	}
 
 	resetGame(characters: Character[], clues: string[]) {
@@ -30,17 +30,14 @@ export class GameManager {
 			revealedClues: [],
 			votes: {},
 		};
-		this.players = new Map();
+		this.players = new Map<string, Player>(); // Reinitialize as a new Map
 		this.revealedClueCount = 0;
 		this.votingOpen = false;
-		this.murderer = this.selectRandomMurderer();
+		this.murderer = this.selectMurderer();
 	}
 
-	private selectRandomMurderer(): string {
-		const randomIndex = Math.floor(
-			Math.random() * this.gameState.characters.length,
-		);
-		return this.gameState.characters[randomIndex].name;
+	private selectMurderer(): string {
+		return "Shalini";
 	}
 
 	addPlayer(playerId: string, name: string): Player {
@@ -80,10 +77,11 @@ export class GameManager {
 			!this.players.get(playerId)?.hasVoted
 		) {
 			this.gameState.votes[playerId] = characterName;
-			// biome-ignore lint/style/noNonNullAssertion: <explanation>
-			const player = this.players.get(playerId)!;
-			player.hasVoted = true;
-			this.players.set(playerId, player);
+			const player = this.players.get(playerId);
+			if (player) {
+				player.hasVoted = true;
+				this.players.set(playerId, player);
+			}
 			return true;
 		}
 		return false;
@@ -117,7 +115,8 @@ export class GameManager {
 	}
 
 	allPlayersVoted(): boolean {
-		return this.getPlayers().every((player) => player.hasVoted);
+		const players = this.getPlayers();
+		return players.length > 0 && players.every((player) => player.hasVoted);
 	}
 
 	allCluesRevealed(): boolean {
