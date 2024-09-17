@@ -19,6 +19,7 @@ import {
 } from "framer-motion";
 import { ArrowLeftIcon, ArrowRightIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { ShimmeringText } from "./shimmering-text";
 
 export function CharacterList() {
 	const { gameState, votingOpen, vote } = useGame();
@@ -65,9 +66,9 @@ export function CharacterList() {
 		<MotionConfig transition={{ duration: 0.7, ease: [0.32, 0.72, 0, 1] }}>
 			<Card className="border-2 border-gold bg-dark-green overflow-hidden min-h-[600px] flex flex-col">
 				<CardHeader>
-					<CardTitle className="text-2xl text-gold font-monoton font-normal z-20">
+					<ShimmeringText tag="h3" className="mb-0 text-left">
 						Characters
-					</CardTitle>
+					</ShimmeringText>
 				</CardHeader>
 				<CardContent className="relative flex justify-center items-center grow">
 					<div className="w-[300px] h-[400px] relative">
@@ -113,11 +114,11 @@ export function CharacterList() {
 						disabled={current === 0}
 						variant="outline"
 						size="icon"
-						className="bg-dark-green text-gold hover:bg-gold hover:text-dark-green z-20 rounded-full transition-all duration-200"
+						className="bg-dark-green text-gold hover:bg-gold hover:text-dark-green z-20 rounded-full transition-all duration-200 border-gold border"
 					>
 						<ArrowLeftIcon className="h-4 w-4" />
 					</Button>
-					<div className="flex justify-center space-x-2">
+					<div className="flex justify-center space-x-2 z-20 bg-dark-green border-gold border p-2 rounded-full">
 						{gameState.characters.map((character, index) => (
 							<button
 								type="button"
@@ -136,7 +137,7 @@ export function CharacterList() {
 						disabled={current === gameState.characters.length - 1}
 						variant="outline"
 						size="icon"
-						className="bg-dark-green text-gold hover:bg-gold hover:text-dark-green z-20 rounded-full transition-all duration-200"
+						className="bg-dark-green text-gold hover:bg-gold hover:text-dark-green z-20 rounded-full transition-all duration-200 border-gold border"
 					>
 						<ArrowRightIcon className="h-4 w-4" />
 					</Button>

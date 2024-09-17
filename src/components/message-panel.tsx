@@ -8,6 +8,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { SendIcon } from "lucide-react";
 import type { ChatMessage } from "@/types";
+import { ShimmeringText } from "./shimmering-text";
 
 export function MessagePanel() {
 	const { chatMessages, sendChatMessage } = useGame();
@@ -34,9 +35,9 @@ export function MessagePanel() {
 	return (
 		<Card className="border-2 border-gold bg-dark-green flex flex-col min-h-[600px]">
 			<CardHeader className="border-b border-gold py-2">
-				<CardTitle className="text-2xl text-gold font-monoton font-normal text-center">
+				<ShimmeringText tag="h3" className="mb-0">
 					Messages
-				</CardTitle>
+				</ShimmeringText>
 			</CardHeader>
 			<CardContent className="flex-grow flex flex-col p-4 overflow-hidden">
 				<ScrollArea className="flex-grow pr-4" ref={scrollAreaRef}>

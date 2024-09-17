@@ -1,9 +1,10 @@
 import React from "react";
 import { useGame } from "@/hooks/use-game";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
+import { ShimmeringText } from "./shimmering-text";
 
 export function JoinGame() {
 	const { joinGame } = useGame();
@@ -23,12 +24,12 @@ export function JoinGame() {
 	};
 
 	return (
-		<div className="flex items-center justify-center h-screen bg-dark-green">
+		<div className="flex items-center justify-center h-screen">
 			<Card className="w-[350px] border-2 border-gold bg-dark-green">
 				<CardHeader>
-					<CardTitle className="text-3xl text-gold text-center">
+					<ShimmeringText tag="h3" className="mb-0">
 						Join Murder Mystery Game
-					</CardTitle>
+					</ShimmeringText>
 				</CardHeader>
 				<CardContent>
 					<Input

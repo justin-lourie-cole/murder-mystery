@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import { CheckCircle, Clock } from "lucide-react";
+import { ShimmeringText } from "./shimmering-text";
 
 export function PlayerList() {
 	const { players } = useGame();
@@ -18,7 +19,9 @@ export function PlayerList() {
 	return (
 		<Card className="border-2 border-gold bg-dark-green">
 			<CardHeader>
-				<CardTitle className="text-2xl text-gold">Players</CardTitle>
+				<ShimmeringText tag="h3" className="mb-0">
+					Players
+				</ShimmeringText>
 			</CardHeader>
 			<CardContent>
 				<ScrollArea className="h-[300px]">
