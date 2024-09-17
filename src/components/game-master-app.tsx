@@ -76,15 +76,13 @@ export function GameMasterApp() {
 
 	return (
 		<div className="container mx-auto p-4 space-y-8 bg-dark-green min-h-screen">
-			<h1 className="text-6xl font-bold text-center mb-8 text-gold font-serif tracking-wide">
+			<h1 className="text-6xl font-bold text-center mb-8 text-gold tracking-wide">
 				Control Panel
 			</h1>
 
 			<Card className="border-2 border-gold bg-dark-green">
 				<CardHeader>
-					<CardTitle className="text-2xl text-gold font-serif">
-						Game State
-					</CardTitle>
+					<CardTitle className="text-2xl text-gold">Game State</CardTitle>
 				</CardHeader>
 				<CardContent className="text-light-gold">
 					<p>Current Round: {gameState.currentRound}</p>
@@ -95,9 +93,7 @@ export function GameMasterApp() {
 
 			<Card className="border-2 border-gold bg-dark-green">
 				<CardHeader>
-					<CardTitle className="text-2xl text-gold font-serif">
-						Players
-					</CardTitle>
+					<CardTitle className="text-2xl text-gold">Players</CardTitle>
 				</CardHeader>
 				<CardContent>
 					<ScrollArea className="h-[200px]">
@@ -135,9 +131,7 @@ export function GameMasterApp() {
 
 			<Card className="border-2 border-gold bg-dark-green">
 				<CardHeader>
-					<CardTitle className="text-2xl text-gold font-serif">
-						Revealed Clues
-					</CardTitle>
+					<CardTitle className="text-2xl text-gold">Revealed Clues</CardTitle>
 				</CardHeader>
 				<CardContent>
 					<ScrollArea className="h-[200px]">
@@ -165,28 +159,28 @@ export function GameMasterApp() {
 				<Button
 					onClick={handleRevealClue}
 					disabled={gameState.revealedClues.length >= 5}
-					className="bg-gold text-dark-green hover:bg-light-gold font-serif"
+					className="bg-gold text-dark-green hover:bg-light-gold"
 				>
 					Reveal Next Clue
 				</Button>
 				<Button
 					onClick={handleOpenVoting}
 					disabled={votingOpen}
-					className="bg-gold text-dark-green hover:bg-light-gold font-serif"
+					className="bg-gold text-dark-green hover:bg-light-gold"
 				>
 					Open Voting
 				</Button>
 				<Button
 					onClick={endGame}
 					variant="secondary"
-					className="bg-light-gold text-dark-green hover:bg-gold font-serif"
+					className="bg-light-gold text-dark-green hover:bg-gold"
 				>
 					End Game
 				</Button>
 				<Button
 					onClick={resetGame}
 					variant="destructive"
-					className="bg-red-900 text-gold hover:bg-red-800 font-serif"
+					className="bg-red-900 text-gold hover:bg-red-800"
 				>
 					Reset Game
 				</Button>
@@ -195,9 +189,7 @@ export function GameMasterApp() {
 			{votingOpen && (
 				<Card className="border-2 border-gold bg-dark-green">
 					<CardHeader>
-						<CardTitle className="text-2xl text-gold font-serif">
-							Votes
-						</CardTitle>
+						<CardTitle className="text-2xl text-gold">Votes</CardTitle>
 					</CardHeader>
 					<CardContent>
 						<ul>
@@ -217,9 +209,7 @@ export function GameMasterApp() {
 			<Dialog open={showEndGameDialog} onOpenChange={setShowEndGameDialog}>
 				<DialogContent className="bg-dark-green border-2 border-gold">
 					<DialogHeader>
-						<DialogTitle className="text-3xl text-gold font-serif">
-							Game Ended
-						</DialogTitle>
+						<DialogTitle className="text-3xl text-gold">Game Ended</DialogTitle>
 						<DialogDescription className="text-light-gold">
 							{winners.length > 0 ? (
 								<>
@@ -239,7 +229,7 @@ export function GameMasterApp() {
 					<DialogFooter>
 						<Button
 							onClick={resetGame}
-							className="bg-gold text-dark-green hover:bg-light-gold font-serif"
+							className="bg-gold text-dark-green hover:bg-light-gold"
 						>
 							Start New Game
 						</Button>

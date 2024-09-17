@@ -26,7 +26,7 @@ export function JoinGame() {
 		<div className="flex items-center justify-center h-screen bg-dark-green">
 			<Card className="w-[350px] border-2 border-gold bg-dark-green">
 				<CardHeader>
-					<CardTitle className="text-3xl text-gold font-serif text-center">
+					<CardTitle className="text-3xl text-gold text-center">
 						Join Murder Mystery Game
 					</CardTitle>
 				</CardHeader>
@@ -42,7 +42,7 @@ export function JoinGame() {
 					/>
 					<Button
 						onClick={handleJoinGame}
-						className="w-full bg-gold text-dark-green hover:bg-light-gold font-serif text-lg"
+						className="w-full bg-gold text-dark-green hover:bg-light-gold text-lg"
 					>
 						Join Game
 					</Button>

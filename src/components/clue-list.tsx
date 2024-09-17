@@ -10,7 +10,7 @@ export function CluesList() {
 	return (
 		<Card className="border-2 border-gold bg-dark-green">
 			<CardHeader>
-				<CardTitle className="text-2xl text-gold font-serif">Clues</CardTitle>
+				<CardTitle className="text-2xl text-gold">Clues</CardTitle>
 			</CardHeader>
 			<CardContent>
 				<ScrollArea className="h-[200px] w-full rounded-md border border-gold p-4">

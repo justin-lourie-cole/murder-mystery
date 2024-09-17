@@ -18,7 +18,7 @@ export function PlayerList() {
 	return (
 		<Card className="border-2 border-gold bg-dark-green">
 			<CardHeader>
-				<CardTitle className="text-2xl text-gold font-serif">Players</CardTitle>
+				<CardTitle className="text-2xl text-gold">Players</CardTitle>
 			</CardHeader>
 			<CardContent>
 				<ScrollArea className="h-[300px]">

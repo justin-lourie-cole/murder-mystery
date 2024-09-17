@@ -32,18 +32,18 @@ export function MessagePanel() {
 	};
 
 	return (
-		<Card className="border-2 border-gold bg-dark-green flex flex-col">
+		<Card className="border-2 border-gold bg-dark-green flex flex-col min-h-[600px]">
 			<CardHeader className="border-b border-gold py-2">
-				<CardTitle className="text-2xl text-gold font-serif text-center">
+				<CardTitle className="text-2xl text-gold font-monoton font-normal text-center">
 					Messages
 				</CardTitle>
 			</CardHeader>
-			<CardContent className="flex-grow flex flex-col p-4 overflow-hidden h-[500px]">
+			<CardContent className="flex-grow flex flex-col p-4 overflow-hidden">
 				<ScrollArea className="flex-grow pr-4" ref={scrollAreaRef}>
 					<div className="space-y-4">
 						{chatMessages?.map((msg: ChatMessage) => (
 							<div key={msg.id}>
-								<p className="text-gold font-serif">{msg.sender}</p>
+								<p className="text-gold font-inter">{msg.sender}</p>
 								<div className="bg-light-gold/20 p-2 rounded-lg mt-1">
 									<p className="text-light-gold">{msg.content}</p>
 								</div>
@@ -65,7 +65,7 @@ export function MessagePanel() {
 					/>
 					<Button
 						onClick={handleSendMessage}
-						className="bg-gold text-dark-green hover:bg-light-gold font-serif p-2"
+						className="bg-gold text-dark-green hover:bg-light-gold p-2"
 					>
 						<SendIcon className="h-5 w-5" />
 						<span className="sr-only">Send message</span>

@@ -16,9 +16,7 @@ export function EndGameDialog() {
 		<Dialog open={showEndGameDialog} onOpenChange={setShowEndGameDialog}>
 			<DialogContent className="bg-dark-green border-2 border-gold">
 				<DialogHeader>
-					<DialogTitle className="text-3xl text-gold font-serif">
-						Game Results
-					</DialogTitle>
+					<DialogTitle className="text-3xl text-gold">Game Results</DialogTitle>
 				</DialogHeader>
 				<div className="text-light-gold">
 					<p className="text-xl">The murderer was: {murderer}</p>
@@ -38,7 +36,7 @@ export function EndGameDialog() {
 				<DialogFooter>
 					<Button
 						onClick={() => setShowEndGameDialog(false)}
-						className="bg-gold text-dark-green hover:bg-light-gold font-serif"
+						className="bg-gold text-dark-green hover:bg-light-gold"
 					>
 						Close
 					</Button>

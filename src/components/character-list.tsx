@@ -30,18 +30,16 @@ export function CharacterList() {
 
 	const nextCard = () => {
 		if (!gameState?.characters) return;
+		if (current === gameState?.characters?.length - 1) return;
 
-		if (current < gameState?.characters?.length - 1) {
-			setCurrent(current + 1);
-		}
+		setCurrent(current + 1);
 	};
 
 	const previousCard = () => {
 		if (!gameState?.characters) return;
+		if (current === 0) return;
 
-		if (current > 0) {
-			setCurrent(current - 1);
-		}
+		setCurrent(current - 1);
 	};
 
 	const calculatePosition = (index: number, currentCard: number) => {
@@ -65,13 +63,13 @@ export function CharacterList() {
 
 	return (
 		<MotionConfig transition={{ duration: 0.7, ease: [0.32, 0.72, 0, 1] }}>
-			<Card className="border-2 border-gold bg-dark-green overflow-hidden ">
+			<Card className="border-2 border-gold bg-dark-green overflow-hidden min-h-[600px] flex flex-col">
 				<CardHeader>
-					<CardTitle className="text-2xl text-gold font-serif z-20">
+					<CardTitle className="text-2xl text-gold font-monoton font-normal z-20">
 						Characters
 					</CardTitle>
 				</CardHeader>
-				<CardContent className="relative min-h-[400px] flex justify-center items-center">
+				<CardContent className="relative flex justify-center items-center grow">
 					<div className="w-[300px] h-[400px] relative">
 						<AnimatePresence>
 							{gameState.characters.map(

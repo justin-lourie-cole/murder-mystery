@@ -15,13 +15,17 @@ export function PlayerApp() {
 	}
 
 	if (!gameState) {
-		return <div className="text-center text-gold">Loading game state...</div>;
+		return (
+			<div className="text-center text-gold font-monoton">
+				Loading game state...
+			</div>
+		);
 	}
 
 	return (
 		<div className="container mx-auto p-4 space-y-8 bg-dark-green min-h-screen">
 			<h1
-				className="text-6xl font-bold text-center mb-8 font-serif tracking-wide
+				className="text-6xl text-center mb-8 font-monoton tracking-wide
         bg-clip-text text-transparent bg-gradient-to-r 
         from-yellow-400 via-yellow-200 to-yellow-400
         animate-shimmer"
