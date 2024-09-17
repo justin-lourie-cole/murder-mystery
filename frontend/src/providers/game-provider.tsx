@@ -6,7 +6,7 @@ import type {
 	GameState,
 	Player,
 	ServerToClientEvents,
-} from "@/types";
+} from "@shared/types";
 import { useCallback, useEffect, useState } from "react";
 import { io, type Socket } from "socket.io-client";
 

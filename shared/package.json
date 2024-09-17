@@ -1,0 +1,20 @@
+{
+  "name": "@your-org/shared",
+  "version": "1.0.0",
+  "private": true,
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "lint": "eslint . --ext .ts,.tsx",
+    "test": "vitest"
+  },
+  "devDependencies": {
+    "eslint": "^9.9.0",
+    "typescript": "^5.5.3",
+    "vitest": "^2.1.1"
+  },
+  "dependencies": {
+    "socket.io": "^4.7.5"
+  }
+}

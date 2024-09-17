@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import type { ChatMessage, GameState, Player } from "@/types";
+import type { ChatMessage, GameState, Player } from "@shared/types";
 
 interface GameContextType {
 	gameState: GameState | null;

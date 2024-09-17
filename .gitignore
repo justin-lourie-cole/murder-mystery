@@ -7,18 +7,29 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
-*.local
+# Frontend
+frontend/node_modules
+frontend/dist
+frontend/.env.local
+
+# Server
+server/node_modules
+server/dist
+server/.env.local
+
+# Shared
+shared/node_modules
+shared/dist
+shared/.env.local
 
 # Editor directories and files
-.vscode/*
-!.vscode/extensions.json
-.idea
+.vscode/
+.idea/
 .DS_Store
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
+
+node_modules

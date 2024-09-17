@@ -1,4 +1,4 @@
-import type { GameState, Character, Player } from "@/types";
+import type { GameState, Character, Player } from "@shared/types";
 
 export class GameManager {
 	private gameState: GameState;

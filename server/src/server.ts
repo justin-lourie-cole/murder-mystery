@@ -9,10 +9,10 @@ import type {
 	InterServerEvents,
 	SocketData,
 	ChatMessage,
-} from "./src/types";
-import { characters, clues, GameManager } from "./src/game";
+} from "@shared/types";
+import { characters, clues, GameManager } from "./game";
 
-const PORT = 3001;
+const PORT = process.env.PORT || 3001;
 
 const app = express();
 app.use(cors());
@@ -166,8 +166,6 @@ io.on("connection", (socket: Socket) => {
 				content,
 				timestamp: Date.now(),
 			};
-
-			console.log(chatMessage);
 
 			io.emit("chatMessage", chatMessage);
 		} catch (error) {

@@ -9,7 +9,7 @@ import {
 	CardHeader,
 } from "@/components/ui/card";
 import { useGame } from "@/hooks/use-game";
-import type { Character } from "@/types";
+import type { Character } from "../../../shared/types";
 import {
 	motion,
 	AnimatePresence,

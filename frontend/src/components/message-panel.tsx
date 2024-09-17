@@ -7,7 +7,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { SendIcon } from "lucide-react";
-import type { ChatMessage } from "@/types";
+import type { ChatMessage } from "@shared/types";
 import { ShimmeringText } from "./shimmering-text";
 
 export function MessagePanel() {
