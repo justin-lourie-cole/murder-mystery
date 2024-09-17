@@ -66,7 +66,7 @@ export function CharacterList() {
 		<MotionConfig transition={{ duration: 0.7, ease: [0.32, 0.72, 0, 1] }}>
 			<Card className="border-2 border-gold bg-dark-green overflow-hidden min-h-[600px] flex flex-col">
 				<CardHeader>
-					<ShimmeringText tag="h3" className="mb-0 text-left">
+					<ShimmeringText tag="h3" className="mb-0 text-left z-20">
 						Characters
 					</ShimmeringText>
 				</CardHeader>
@@ -108,13 +108,13 @@ export function CharacterList() {
 						</AnimatePresence>
 					</div>
 				</CardContent>
-				<CardFooter className="justify-between">
+				<CardFooter className="justify-center md:justify-between">
 					<Button
 						onClick={previousCard}
 						disabled={current === 0}
 						variant="outline"
 						size="icon"
-						className="bg-dark-green text-gold hover:bg-gold hover:text-dark-green z-20 rounded-full transition-all duration-200 border-gold border"
+						className="bg-dark-green text-gold hover:bg-gold hover:text-dark-green z-20 rounded-full transition-all duration-200 border-gold border hidden md:block"
 					>
 						<ArrowLeftIcon className="h-4 w-4" />
 					</Button>
@@ -137,7 +137,7 @@ export function CharacterList() {
 						disabled={current === gameState.characters.length - 1}
 						variant="outline"
 						size="icon"
-						className="bg-dark-green text-gold hover:bg-gold hover:text-dark-green z-20 rounded-full transition-all duration-200 border-gold border"
+						className="bg-dark-green text-gold hover:bg-gold hover:text-dark-green z-20 rounded-full transition-all duration-200 border-gold border hidden md:block"
 					>
 						<ArrowRightIcon className="h-4 w-4" />
 					</Button>
