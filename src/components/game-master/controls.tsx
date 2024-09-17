@@ -33,33 +33,20 @@ export function Controls() {
 	if (!gameState) return null;
 
 	return (
-		<div className="flex flex-wrap justify-between gap-4">
+		<div className="flex flex-wrap justify-center gap-4">
 			<Button
 				onClick={handleRevealClue}
 				disabled={gameState.revealedClues.length >= 5}
-				className="bg-gold text-dark-green hover:bg-light-gold"
 			>
 				Reveal Next Clue
 			</Button>
-			<Button
-				onClick={handleOpenVoting}
-				disabled={votingOpen}
-				className="bg-gold text-dark-green hover:bg-light-gold"
-			>
+			<Button onClick={handleOpenVoting} disabled={votingOpen}>
 				Open Voting
 			</Button>
-			<Button
-				onClick={endGame}
-				variant="secondary"
-				className="bg-light-gold text-dark-green hover:bg-gold"
-			>
+			<Button onClick={endGame} variant="secondary">
 				End Game
 			</Button>
-			<Button
-				onClick={resetGame}
-				variant="destructive"
-				className="bg-red-900 text-gold hover:bg-red-800"
-			>
+			<Button onClick={resetGame} variant="destructive">
 				Reset Game
 			</Button>
 		</div>

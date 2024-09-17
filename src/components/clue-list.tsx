@@ -8,7 +8,7 @@ export function CluesList() {
 	if (!gameState) return null;
 
 	return (
-		<Card className="border-2 border-gold bg-dark-green">
+		<Card className="box border-gold bg-dark-green">
 			<CardHeader>
 				<CardTitle className="text-2xl text-gold">Clues</CardTitle>
 			</CardHeader>

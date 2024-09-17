@@ -11,7 +11,7 @@ export const characters: Character[] = [
 			"When the victim accidentally spilled coffee on Gordon's latest 'masterpiece' (a doodle of a cat with a monocle), Gordon panicked. Fearing the truth would come out—that he had no original ideas—he grabbed the Whiteboard Wipe and used it to erase the evidence... and the victim!",
 		class: "Creative Director",
 		level: 8,
-		imgSrc: "/images/gordon.png",
+		imgSrc: "/profile-picture.jpg",
 		imgAlt: "Gordon",
 	},
 	{
@@ -24,7 +24,7 @@ export const characters: Character[] = [
 			"When the victim discovered that Mike was using the agency's resources to develop a dating app for cats, Mike panicked. In a desperate attempt to protect his feline matchmaking dreams, he swung the USB Drive like a ninja star, declaring, 'You'll never find my cat-tastic algorithms now!'",
 		class: "Tech Wizard",
 		level: 9,
-		imgSrc: "/images/mike.png",
+		imgSrc: "/profile-picture.jpg",
 		imgAlt: "Mike",
 	},
 	{
@@ -37,7 +37,7 @@ export const characters: Character[] = [
 			"When the victim threatened to spill the beans about Justin's 'creative' expense reports (who knew a trip to the beach could be a client meeting?), Justin thought, 'What would Batman do?' He grabbed his Coffee Mug of Justice and delivered a caffeinated smackdown, declaring, 'Justice is brewed!'",
 		class: "Account Executive",
 		level: 7,
-		imgSrc: "/images/justin.png",
+		imgSrc: "/profile-picture.jpg",
 		imgAlt: "Justin",
 	},
 	{
@@ -50,7 +50,7 @@ export const characters: Character[] = [
 			"When the victim publicly questioned Shalini's 'groundbreaking' findings that cats are better than dogs (a highly controversial study), she snapped. In a fit of rage, she constructed a Paperclip Catapult and launched a barrage of paperclips, shouting, 'You'll regret questioning my feline research!'",
 		class: "Data Analyst",
 		level: 8,
-		imgSrc: "/images/shalini.png",
+		imgSrc: "/profile-picture.jpg",
 		imgAlt: "Shalini",
 	},
 	{
@@ -63,7 +63,7 @@ export const characters: Character[] = [
 			"When the victim threatened to reveal Su's secret of buying followers (shocking, I know!), she panicked. In a fit of creativity, she unleashed a Post-It Note Bomb during a Zoom call, covering everyone in sticky notes and declaring, 'You're all now part of my new viral campaign!'",
 		class: "Social Media Manager",
 		level: 7,
-		imgSrc: "/images/su.png",
+		imgSrc: "/profile-picture.jpg",
 		imgAlt: "Su",
 	},
 	{
@@ -76,7 +76,7 @@ export const characters: Character[] = [
 			"When the victim caught Gerard trying to shred incriminating documents (and a few of his lunch receipts), Gerard panicked. He caused a Printer Jam, claiming it was an 'office emergency,' and used the chaos to sneak out, leaving the victim to deal with the paper disaster—permanently!",
 		class: "Legal Counsel",
 		level: 9,
-		imgSrc: "/images/gerard.png",
+		imgSrc: "/profile-picture.jpg",
 		imgAlt: "Gerard",
 	},
 ];

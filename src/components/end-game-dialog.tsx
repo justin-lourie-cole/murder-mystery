@@ -12,13 +12,21 @@ export function EndGameDialog() {
 	const { showEndGameDialog, setShowEndGameDialog, winners, murderer } =
 		useGame();
 
+	function handleClose() {
+		setShowEndGameDialog(false);
+		// refresh the page
+		window.location.reload();
+	}
+
 	return (
 		<Dialog open={showEndGameDialog} onOpenChange={setShowEndGameDialog}>
-			<DialogContent className="bg-dark-green border-2 border-gold">
+			<DialogContent className="border-2">
 				<DialogHeader>
-					<DialogTitle className="text-3xl text-gold">Game Results</DialogTitle>
+					<DialogTitle className="text-3xl text-primary">
+						Game Results
+					</DialogTitle>
 				</DialogHeader>
-				<div className="text-light-gold">
+				<div className="text-primary">
 					<p className="text-xl">The murderer was: {murderer}</p>
 					{winners.length > 0 ? (
 						<>
@@ -34,12 +42,7 @@ export function EndGameDialog() {
 					)}
 				</div>
 				<DialogFooter>
-					<Button
-						onClick={() => setShowEndGameDialog(false)}
-						className="bg-gold text-dark-green hover:bg-light-gold"
-					>
-						Close
-					</Button>
+					<Button onClick={handleClose}>Close</Button>
 				</DialogFooter>
 			</DialogContent>
 		</Dialog>

@@ -1,4 +1,4 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { useGame } from "@/hooks/use-game";
 import { ScrollArea } from "./ui/scroll-area";
 import {
@@ -17,7 +17,7 @@ export function PlayerList() {
 	const { players } = useGame();
 
 	return (
-		<Card className="border-2 border-gold bg-dark-green">
+		<Card className="border-2">
 			<CardHeader>
 				<ShimmeringText tag="h3" className="mb-0">
 					Players
@@ -25,19 +25,17 @@ export function PlayerList() {
 			</CardHeader>
 			<CardContent>
 				<ScrollArea className="h-[300px]">
-					<Table>
+					<Table className="text-white">
 						<TableHeader>
 							<TableRow>
-								<TableHead className="text-gold">Name</TableHead>
-								<TableHead className="text-gold text-right">Status</TableHead>
+								<TableHead className="text-white">Name</TableHead>
+								<TableHead className="text-white text-right">Status</TableHead>
 							</TableRow>
 						</TableHeader>
 						<TableBody>
 							{players.map((player) => (
 								<TableRow key={player.id}>
-									<TableCell className="text-light-gold">
-										{player.name}
-									</TableCell>
+									<TableCell>{player.name}</TableCell>
 									<TableCell className="text-right">
 										{player.hasVoted ? (
 											<Badge className="bg-green-600 text-white">

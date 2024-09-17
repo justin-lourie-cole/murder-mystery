@@ -8,7 +8,7 @@ export function Votes() {
 	if (!gameState) return null;
 
 	return (
-		<Card className="border-2 border-gold bg-dark-green">
+		<Card className="border-2">
 			<CardHeader>
 				<ShimmeringText tag="h3" className="mb-0">
 					Votes
@@ -17,7 +17,7 @@ export function Votes() {
 			<CardContent>
 				<ul>
 					{Object.entries(gameState.votes).map(([playerId, characterName]) => (
-						<li key={`vote-${playerId}`} className="text-light-gold">
+						<li key={`vote-${playerId}`} className="text-white">
 							{players.find((p) => p.id === playerId)?.name} voted for{" "}
 							{characterName}
 						</li>

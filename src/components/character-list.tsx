@@ -7,7 +7,6 @@ import {
 	CardContent,
 	CardFooter,
 	CardHeader,
-	CardTitle,
 } from "@/components/ui/card";
 import { useGame } from "@/hooks/use-game";
 import type { Character } from "@/types";
@@ -64,9 +63,12 @@ export function CharacterList() {
 
 	return (
 		<MotionConfig transition={{ duration: 0.7, ease: [0.32, 0.72, 0, 1] }}>
-			<Card className="border-2 border-gold bg-dark-green overflow-hidden min-h-[600px] flex flex-col">
+			<Card className="border-2 overflow-hidden min-h-[600px] flex flex-col">
 				<CardHeader>
-					<ShimmeringText tag="h3" className="mb-0 text-left z-20">
+					<ShimmeringText
+						tag="h3"
+						className="mb-0 text-center md:text-left z-20"
+					>
 						Characters
 					</ShimmeringText>
 				</CardHeader>
@@ -112,20 +114,19 @@ export function CharacterList() {
 					<Button
 						onClick={previousCard}
 						disabled={current === 0}
-						variant="outline"
 						size="icon"
-						className="bg-dark-green text-gold hover:bg-gold hover:text-dark-green z-20 rounded-full transition-all duration-200 border-gold border hidden md:block"
+						className="z-20 rounded-full transition-all duration-200 hidden md:flex items-center justify-center"
 					>
 						<ArrowLeftIcon className="h-4 w-4" />
 					</Button>
-					<div className="flex justify-center space-x-2 z-20 bg-dark-green border-gold border p-2 rounded-full">
+					<div className="flex justify-center space-x-2 z-20 p-2 rounded-full">
 						{gameState.characters.map((character, index) => (
 							<button
 								type="button"
 								key={character.name}
 								className={cn(
 									"w-2 h-2 rounded-full transition-colors",
-									current === index ? "bg-gold" : "bg-light-gold",
+									current === index ? "bg-primary" : "bg-secondary",
 								)}
 								onClick={() => setCurrent(index)}
 								aria-label={`Go to character ${index + 1}`}
@@ -135,9 +136,8 @@ export function CharacterList() {
 					<Button
 						onClick={nextCard}
 						disabled={current === gameState.characters.length - 1}
-						variant="outline"
 						size="icon"
-						className="bg-dark-green text-gold hover:bg-gold hover:text-dark-green z-20 rounded-full transition-all duration-200 border-gold border hidden md:block"
+						className="z-20 rounded-full transition-all duration-200 border hidden md:flex items-center justify-center"
 					>
 						<ArrowRightIcon className="h-4 w-4" />
 					</Button>
@@ -161,12 +161,12 @@ function CharacterCard({
 			<CardHeader className="p-1/2 overflow-hidden rounded-t-2xl">
 				<div className="relative w-full h-48 mb-2 overflow-hidden">
 					<img
-						src={"/placeholder.svg"}
+						src={character.imgSrc}
 						alt={character.imgAlt || "Placeholder"}
 						className="object-cover object-center"
 					/>
 					<div className="absolute z-10 top-0 left-0 w-full h-full flex flex-row items-start justify-start p-2">
-						<div className="bg-[#E5AC61] text-emerald-900 w-8 h-8 rounded-full flex items-center justify-center font-bold text-xl">
+						<div className="bg-primary text-primary-foreground w-8 h-8 rounded-full flex items-center justify-center font-bold text-xl">
 							{character.level}
 						</div>
 					</div>
@@ -174,7 +174,7 @@ function CharacterCard({
 			</CardHeader>
 			<CardContent className="px-0">
 				<div className="flex flex-col justify-between px-2 mb-4">
-					<h3 className="text-lg font-bold">{character.name}</h3>
+					<h3 className="text-lg font-bold font-body">{character.name}</h3>
 					<p className="text-sm">{character.class}</p>
 				</div>
 				<div className="flex flex-col justify-between px-2 space-y-2">
@@ -182,7 +182,7 @@ function CharacterCard({
 					{votingOpen && (
 						<Button
 							onClick={() => handleVote(character.name)}
-							className="w-full bg-amber-600 text-emerald-900 hover:bg-amber-500 font-bold py-1 rounded-md transition-colors duration-200 text-sm"
+							className="w-full bg-primary text-primary-foreground hover:bg-primary/90 font-bold py-1 rounded-md transition-colors duration-200 text-sm"
 						>
 							Vote
 						</Button>

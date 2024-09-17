@@ -8,13 +8,13 @@ export function GameState() {
 	if (!gameState) return null;
 
 	return (
-		<Card className="border-2 border-gold bg-dark-green">
+		<Card>
 			<CardHeader>
 				<ShimmeringText tag="h3" className="mb-0">
 					Game State
 				</ShimmeringText>
 			</CardHeader>
-			<CardContent className="text-light-gold">
+			<CardContent className="text-white">
 				<p>Current Round: {gameState.currentRound}</p>
 				<p>Voting Open: {votingOpen ? "Yes" : "No"}</p>
 				<p>Revealed Clues: {gameState.revealedClues.length} / 5</p>

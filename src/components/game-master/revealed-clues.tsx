@@ -9,7 +9,7 @@ export function RevealedClues() {
 	if (!gameState) return null;
 
 	return (
-		<Card className="border-2 border-gold bg-dark-green">
+		<Card className="border-2">
 			<CardHeader>
 				<ShimmeringText tag="h3" className="mb-0">
 					Revealed Clues
@@ -21,15 +21,13 @@ export function RevealedClues() {
 						<ul className="space-y-2">
 							{gameState.revealedClues.map((clue, index) => (
 								// biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
-								<li key={`clue-${index}`} className="text-sm text-light-gold">
+								<li key={`clue-${index}`} className="text-sm text-white">
 									{clue}
 								</li>
 							))}
 						</ul>
 					) : (
-						<p className="text-sm text-muted-foreground">
-							No clues revealed yet.
-						</p>
+						<p className="text-sm text-white">No clues revealed yet.</p>
 					)}
 				</ScrollArea>
 			</CardContent>

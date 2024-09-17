@@ -25,10 +25,10 @@ export function JoinGame() {
 
 	return (
 		<div className="flex items-center justify-center h-screen">
-			<Card className="w-[350px] border-2 border-gold bg-dark-green">
+			<Card className="w-[350px] border-2">
 				<CardHeader>
 					<ShimmeringText tag="h3" className="mb-0">
-						Join Murder Mystery Game
+						Join game
 					</ShimmeringText>
 				</CardHeader>
 				<CardContent>
@@ -39,13 +39,10 @@ export function JoinGame() {
 						onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
 							setPlayerName(e.target.value)
 						}
-						className="mb-4 bg-light-gold text-dark-green placeholder-dark-green/50 border-gold"
+						className="mb-4 text-lg"
 					/>
-					<Button
-						onClick={handleJoinGame}
-						className="w-full bg-gold text-dark-green hover:bg-light-gold text-lg"
-					>
-						Join Game
+					<Button onClick={handleJoinGame} className="w-full text-lg">
+						Submit
 					</Button>
 				</CardContent>
 			</Card>

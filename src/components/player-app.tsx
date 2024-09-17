@@ -1,7 +1,7 @@
 import { useGame } from "@/hooks/use-game";
 import { JoinGame } from "./join-game";
-import { PlayerList } from "./player-list";
-import { CluesList } from "./clue-list";
+// import { PlayerList } from "./player-list";
+// import { CluesList } from "./clue-list";
 import { Separator } from "./ui/separator";
 import { CharacterList } from "./character-list";
 import { EndGameDialog } from "./end-game-dialog";
@@ -17,9 +17,7 @@ export function PlayerApp() {
 
 	if (!gameState) {
 		return (
-			<div className="text-center text-gold font-monoton">
-				Loading game state...
-			</div>
+			<div className="text-center  font-heading">Loading game state...</div>
 		);
 	}
 
@@ -36,7 +34,7 @@ export function PlayerApp() {
 					<MessagePanel />
 				</div>
 			</div>
-			<Separator className="bg-gold" />
+			<Separator />
 			<EndGameDialog />
 		</div>
 	);
