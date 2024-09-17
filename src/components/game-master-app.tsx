@@ -4,6 +4,8 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
+import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
+import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/hooks/use-toast";
 import { useGame } from "@/hooks/use-game";
 import { useEffect } from "react";
@@ -15,6 +17,7 @@ import {
 	DialogDescription,
 	DialogFooter,
 } from "@/components/ui/dialog";
+import { CheckCircle, Clock } from "lucide-react";
 
 export function GameMasterApp() {
 	const {
@@ -74,7 +77,7 @@ export function GameMasterApp() {
 	return (
 		<div className="container mx-auto p-4 space-y-8 bg-dark-green min-h-screen">
 			<h1 className="text-6xl font-bold text-center mb-8 text-gold font-serif tracking-wide">
-				Game Master Control Panel
+				Control Panel
 			</h1>
 
 			<Card className="border-2 border-gold bg-dark-green">
@@ -98,13 +101,34 @@ export function GameMasterApp() {
 				</CardHeader>
 				<CardContent>
 					<ScrollArea className="h-[200px]">
-						<ul className="space-y-2">
-							{players.map((player) => (
-								<li key={player.id} className="text-sm text-light-gold">
-									{player.name} {player.hasVoted && "(Voted)"}
-								</li>
-							))}
-						</ul>
+						<Table>
+							<TableBody>
+								{players.map((player) => (
+									<TableRow key={player.id}>
+										<TableCell className="text-sm text-light-gold py-2">
+											{player.name}
+										</TableCell>
+										<TableCell className="text-right py-2">
+											{player.hasVoted ? (
+												<Badge
+													variant="secondary"
+													className="bg-green-600 text-white text-xs"
+												>
+													<CheckCircle className="mr-1 h-3 w-3" /> Voted
+												</Badge>
+											) : (
+												<Badge
+													variant="secondary"
+													className="bg-yellow-600 text-white text-xs"
+												>
+													<Clock className="mr-1 h-3 w-3" /> Vote Pending
+												</Badge>
+											)}
+										</TableCell>
+									</TableRow>
+								))}
+							</TableBody>
+						</Table>
 					</ScrollArea>
 				</CardContent>
 			</Card>
@@ -135,7 +159,7 @@ export function GameMasterApp() {
 				</CardContent>
 			</Card>
 
-			<Separator className="border-gold" />
+			<Separator className="bg-gold" />
 
 			<div className="flex flex-wrap justify-between gap-4">
 				<Button

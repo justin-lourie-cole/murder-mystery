@@ -10,6 +10,9 @@ export default {
 				sm: "calc(var(--radius) - 4px)",
 			},
 			colors: {
+				gold: "#D4AF37",
+				"light-gold": "#F2E5C1",
+				"dark-green": "#003018",
 				background: "hsl(var(--background))",
 				foreground: "hsl(var(--foreground))",
 				card: {
@@ -49,6 +52,15 @@ export default {
 					3: "hsl(var(--chart-3))",
 					4: "hsl(var(--chart-4))",
 					5: "hsl(var(--chart-5))",
+				},
+			},
+			animation: {
+				shimmer: "shimmer 2s ease-in-out infinite",
+			},
+			keyframes: {
+				shimmer: {
+					"0%, 100%": { backgroundPosition: "0% 50%" },
+					"50%": { backgroundPosition: "100% 50%" },
 				},
 			},
 		},

@@ -20,20 +20,29 @@ export function PlayerApp() {
 
 	return (
 		<div className="container mx-auto p-4 space-y-8 bg-dark-green min-h-screen">
-			<h1 className="text-6xl font-bold text-center mb-8 text-gold font-serif tracking-wide">
-				Murder Mystery Game
+			<h1
+				className="text-6xl font-bold text-center mb-8 font-serif tracking-wide
+        bg-clip-text text-transparent bg-gradient-to-r 
+        from-yellow-400 via-yellow-200 to-yellow-400
+        animate-shimmer"
+				style={{
+					backgroundSize: "200% 100%",
+					animation: "shimmer 2s ease-in-out infinite",
+				}}
+			>
+				Only Meetings in the Office
 			</h1>
 			<div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-				<div className="space-y-8">
-					<PlayerList />
-					<CluesList />
+				<div className="space-y-8 col-span-1">
+					{/* <PlayerList /> */}
+					{/* <CluesList /> */}
 					<CharacterList />
 				</div>
-				<div>
+				<div className="col-span-1">
 					<MessagePanel />
 				</div>
 			</div>
-			<Separator className="border-gold" />
+			<Separator className="bg-gold" />
 			<EndGameDialog />
 		</div>
 	);

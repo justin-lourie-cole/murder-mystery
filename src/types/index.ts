@@ -6,6 +6,10 @@ export interface Character {
 	room: string;
 	backstory: string;
 	motive: string;
+	class: string;
+	level: number;
+	imgSrc: string;
+	imgAlt: string;
 }
 
 export interface Player {

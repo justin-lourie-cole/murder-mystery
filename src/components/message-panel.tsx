@@ -15,10 +15,14 @@ export function MessagePanel() {
 	const scrollAreaRef = useRef<HTMLDivElement>(null);
 
 	useEffect(() => {
-		if (scrollAreaRef.current) {
-			scrollAreaRef.current.scrollTop = scrollAreaRef.current.scrollHeight;
-		}
-	}, []);
+		const scrollElement = scrollAreaRef.current?.querySelector(
+			"[data-radix-scroll-area-viewport]",
+		) as HTMLElement;
+		scrollElement?.scrollTo({
+			top: scrollElement.scrollHeight,
+			behavior: "smooth",
+		});
+	}, [chatMessages]);
 
 	const handleSendMessage = () => {
 		if (message.trim()) {
@@ -28,34 +32,36 @@ export function MessagePanel() {
 	};
 
 	return (
-		<Card className="border-2 border-gold bg-dark-green h-[400px] flex flex-col">
-			<CardHeader className="border-b border-gold">
+		<Card className="border-2 border-gold bg-dark-green flex flex-col">
+			<CardHeader className="border-b border-gold py-2">
 				<CardTitle className="text-2xl text-gold font-serif text-center">
 					Messages
 				</CardTitle>
 			</CardHeader>
-			<CardContent className="flex-grow flex flex-col p-4">
-				<ScrollArea className="flex-grow mb-4 pr-4" ref={scrollAreaRef}>
-					{chatMessages?.map((msg: ChatMessage) => (
-						<div key={msg.id} className="mb-4">
-							<p className="text-gold font-serif">{msg.sender}</p>
-							<div className="bg-light-gold/20 p-2 rounded-lg mt-1">
-								<p className="text-light-gold">{msg.content}</p>
+			<CardContent className="flex-grow flex flex-col p-4 overflow-hidden h-[500px]">
+				<ScrollArea className="flex-grow pr-4" ref={scrollAreaRef}>
+					<div className="space-y-4">
+						{chatMessages?.map((msg: ChatMessage) => (
+							<div key={msg.id}>
+								<p className="text-gold font-serif">{msg.sender}</p>
+								<div className="bg-light-gold/20 p-2 rounded-lg mt-1">
+									<p className="text-light-gold">{msg.content}</p>
+								</div>
+								<p className="text-xs text-gold/50 mt-1 text-right">
+									{new Date(msg.timestamp).toLocaleTimeString()}
+								</p>
 							</div>
-							<p className="text-xs text-gold/50 mt-1 text-right">
-								{new Date(msg.timestamp).toLocaleTimeString()}
-							</p>
-						</div>
-					))}
+						))}
+					</div>
 				</ScrollArea>
-				<div className="flex items-center mt-2">
+				<div className="flex items-center mt-4">
 					<Input
 						type="text"
 						value={message}
 						onChange={(e) => setMessage(e.target.value)}
 						placeholder="Type your message..."
 						className="flex-grow mr-2 bg-light-gold/20 text-light-gold placeholder-light-gold/50 border-gold"
-						onKeyPress={(e) => e.key === "Enter" && handleSendMessage()}
+						onKeyDown={(e) => e.key === "Enter" && handleSendMessage()}
 					/>
 					<Button
 						onClick={handleSendMessage}
