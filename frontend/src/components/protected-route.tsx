@@ -10,7 +10,7 @@ export function ProtectedRoute({
 	children,
 }: ProtectedRouteProps) {
 	if (!isAuthenticated) {
-		return <Navigate to="/" replace />;
+		return <Navigate to="/" />;
 	}
 
 	return <>{children}</>;
