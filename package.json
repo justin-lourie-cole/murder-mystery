@@ -13,5 +13,8 @@
     "deploy": "npm run deploy:frontend && npm run deploy:server",
     "lint": "eslint .",
     "test": "jest"
+  },
+  "devDependencies": {
+    "concurrently": "^9.0.1"
   }
 }

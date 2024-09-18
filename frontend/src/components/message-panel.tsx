@@ -1,5 +1,3 @@
-"use client";
-
 import { useState, useEffect, useRef } from "react";
 import { useGame } from "@/hooks/use-game";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";

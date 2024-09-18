@@ -1,5 +1,3 @@
-"use client";
-
 import { Separator } from "@/components/ui/separator";
 import { useGame } from "@/hooks/use-game";
 import { useEffect } from "react";
