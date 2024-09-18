@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
-import { ShimmeringText } from "./shimmering-text";
+import { ShimmeringText } from "@/components/shimmering-text";
 
 export function JoinGame() {
 	const { joinGame } = useGame();

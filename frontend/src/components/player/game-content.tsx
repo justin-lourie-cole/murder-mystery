@@ -1,10 +1,10 @@
 import { useGame } from "@/hooks/use-game";
-import { PlayerList } from "./player-list";
-import { CluesList } from "./clue-list";
-import { CharacterList } from "./character-list";
-import { Separator } from "./ui/separator";
-import { GameControls } from "./game-contols";
-import { EndGameDialog } from "./end-game-dialog";
+import { PlayerList } from "@/components/game-master/player-list";
+import { CluesList } from "@/components/game-master/clue-list";
+import { CharacterList } from "@/components/player/character-list";
+import { Separator } from "@/components/ui/separator";
+import { Controls } from "@/components/game-master/controls";
+import { EndGameDialog } from "@/components/end-game-dialog";
 
 export default function GameContent() {
 	const { gameState } = useGame();
@@ -26,7 +26,7 @@ export default function GameContent() {
 			<CluesList />
 			<CharacterList />
 			<Separator />
-			<GameControls />
+			<Controls />
 			<EndGameDialog />
 		</div>
 	);

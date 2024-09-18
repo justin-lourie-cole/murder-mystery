@@ -33,7 +33,7 @@ export function Controls() {
 	if (!gameState) return null;
 
 	return (
-		<div className="flex flex-wrap justify-center gap-4">
+		<div className="flex flex-wrap justify-around gap-4">
 			<Button
 				onClick={handleRevealClue}
 				disabled={gameState.revealedClues.length >= 5}

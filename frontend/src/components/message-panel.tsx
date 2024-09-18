@@ -8,7 +8,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { SendIcon } from "lucide-react";
 import type { ChatMessage } from "@shared/types";
-import { ShimmeringText } from "./shimmering-text";
+import { ShimmeringText } from "@/components/shimmering-text";
 
 export function MessagePanel() {
 	const { chatMessages, sendChatMessage } = useGame();

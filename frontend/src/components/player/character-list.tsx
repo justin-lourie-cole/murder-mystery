@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
 	Card,
@@ -9,7 +9,7 @@ import {
 	CardHeader,
 } from "@/components/ui/card";
 import { useGame } from "@/hooks/use-game";
-import type { Character } from "../../../shared/types";
+import type { Character } from "@shared/types";
 import {
 	motion,
 	AnimatePresence,
@@ -18,14 +18,31 @@ import {
 } from "framer-motion";
 import { ArrowLeftIcon, ArrowRightIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { ShimmeringText } from "./shimmering-text";
+import { ShimmeringText } from "@/components/shimmering-text";
 
 export function CharacterList() {
 	const { gameState, votingOpen, vote } = useGame();
 	const [current, setCurrent] = useState(0);
+	const [playerHasVoted, setPlayerHasVoted] = useState(false);
+	const [isDraggable, setIsDraggable] = useState(true);
+
+	useEffect(() => {
+		const mediaQuery = window.matchMedia("(min-width: 768px)");
+		const handleMediaQueryChange = (e: MediaQueryListEvent) => {
+			setIsDraggable(!e.matches);
+		};
+
+		setIsDraggable(!mediaQuery.matches);
+		mediaQuery.addListener(handleMediaQueryChange);
+
+		return () => {
+			mediaQuery.removeListener(handleMediaQueryChange);
+		};
+	}, []);
 
 	const handleVote = (characterName: string) => {
 		vote(characterName);
+		setPlayerHasVoted(true);
 	};
 
 	const nextCard = () => {
@@ -88,7 +105,7 @@ export function CharacterList() {
 											initial={false}
 											animate={{ x, y, rotate, zIndex }}
 											className="absolute"
-											drag={isCurrentDay ? "x" : false}
+											drag={isCurrentDay && isDraggable ? "x" : false}
 											dragConstraints={{ left: 0, right: 0, top: 0, bottom: 0 }}
 											onDragEnd={(_, info: PanInfo) => {
 												if (info.offset.x < -40) {
@@ -102,6 +119,8 @@ export function CharacterList() {
 												character={character}
 												votingOpen={votingOpen}
 												handleVote={handleVote}
+												playerHasVoted={playerHasVoted}
+												isDraggable={isDraggable}
 											/>
 										</motion.div>
 									);
@@ -151,13 +170,22 @@ function CharacterCard({
 	character,
 	votingOpen,
 	handleVote,
+	playerHasVoted,
+	isDraggable,
 }: {
 	character: Character;
 	votingOpen: boolean;
 	handleVote: (characterName: string) => void;
+	playerHasVoted: boolean;
+	isDraggable: boolean;
 }) {
 	return (
-		<Card className="w-full h-full bg-gradient-to-b to-[#AB7329] from-[#E5AC61] rounded-2xl shadow-xl p-[2px] border-none cursor-pointer">
+		<Card
+			className={cn(
+				"w-full h-full bg-gradient-to-b to-[#AB7329] from-[#E5AC61] rounded-2xl shadow-xl p-[2px] border-none cursor-pointer",
+				isDraggable ? "cursor-grab" : "cursor-default",
+			)}
+		>
 			<CardHeader className="p-1/2 overflow-hidden rounded-t-2xl">
 				<div className="relative w-full h-48 mb-2 overflow-hidden">
 					<img
@@ -179,7 +207,7 @@ function CharacterCard({
 				</div>
 				<div className="flex flex-col justify-between px-2 space-y-2">
 					<p className="text-xs">{character.backstory}</p>
-					{votingOpen && (
+					{votingOpen && !playerHasVoted && (
 						<Button
 							onClick={() => handleVote(character.name)}
 							className="w-full bg-primary text-primary-foreground hover:bg-primary/90 font-bold py-1 rounded-md transition-colors duration-200 text-sm"

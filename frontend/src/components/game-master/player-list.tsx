@@ -1,6 +1,6 @@
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { useGame } from "@/hooks/use-game";
-import { ScrollArea } from "./ui/scroll-area";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import {
 	Table,
 	TableBody,
@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import { CheckCircle, Clock } from "lucide-react";
-import { ShimmeringText } from "./shimmering-text";
+import { ShimmeringText } from "@/components/shimmering-text";
 
 export function PlayerList() {
 	const { players } = useGame();

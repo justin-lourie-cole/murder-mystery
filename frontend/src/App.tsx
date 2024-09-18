@@ -1,8 +1,9 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { PlayerApp } from "./components/player-app";
-import { ProtectedRoute } from "./components/protected-route";
-import { GameMasterApp } from "./components/game-master-app";
-import { GameProvider } from "./providers/game-provider";
+import { PlayerApp } from "@/components/player/player-app";
+import { ProtectedRoute } from "@/components/protected-route";
+import { GameMasterApp } from "@/components/game-master/game-master-app";
+import { GameProvider } from "@/providers/game-provider";
+import { Toaster } from "@/components/ui/toaster";
 
 function App() {
 	const isGameMaster = true;
@@ -22,6 +23,7 @@ function App() {
 					/>
 				</Routes>
 			</Router>
+			<Toaster />
 		</GameProvider>
 	);
 }

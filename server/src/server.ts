@@ -9,7 +9,7 @@ import type {
 	InterServerEvents,
 	SocketData,
 	ChatMessage,
-} from "@shared/types";
+} from "../../shared/types";
 import { characters, clues, GameManager } from "./game";
 
 const PORT = process.env.PORT || 3001;
