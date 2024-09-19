@@ -22,43 +22,47 @@ export function EndGameDialog() {
 
 	return (
 		<Dialog open={showEndGameDialog} onOpenChange={setShowEndGameDialog}>
-			<DialogContent className="border-2">
+			<DialogContent className="border-2 text-primary">
 				<DialogHeader>
-					<DialogTitle className="text-3xl text-primary">
+					<DialogTitle className="text-3xl text-center">
 						Game Results
 					</DialogTitle>
+					<DialogDescription className="text-center text-primary">
+						It was {murderer?.name} the whole time!
+					</DialogDescription>
 				</DialogHeader>
-				<DialogDescription className="text-primary">
-					It was {murderer?.name} the whole time!
-				</DialogDescription>
-				<div className="text-primary">
+				<div className="text-center">
 					{murderer ? (
-						<CharacterCard
-							character={murderer}
-							votingOpen={false}
-							handleVote={() => {}}
-							playerHasVoted={false}
-							isDraggable={false}
-						/>
+						<div className="flex items-center justify-center">
+							<CharacterCard
+								character={murderer}
+								votingOpen={false}
+								handleVote={() => {}}
+								playerHasVoted={false}
+								isDraggable={false}
+							/>
+						</div>
 					) : (
 						<p className="text-xl mt-4">No murderer found</p>
 					)}
 					{winners.length > 0 ? (
-						<>
+						<div className="text-center">
 							<p className="text-xl mt-4">The winners are:</p>
 							<ul className="list-disc list-inside">
 								{winners.map((winner) => (
 									<li key={winner.id}>{winner.name}</li>
 								))}
 							</ul>
-						</>
+						</div>
 					) : (
-						<p className="text-xl mt-4">No one guessed correctly!</p>
+						<p className="text-xl mt-4 text-center">
+							No one guessed correctly!
+						</p>
 					)}
 				</div>
-				<DialogFooter>
+				{/* <DialogFooter>
 					<Button onClick={handleClose}>Close</Button>
-				</DialogFooter>
+				</DialogFooter> */}
 			</DialogContent>
 		</Dialog>
 	);

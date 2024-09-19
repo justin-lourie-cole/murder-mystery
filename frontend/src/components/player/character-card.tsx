@@ -21,7 +21,7 @@ export function CharacterCard({
 	return (
 		<Card
 			className={cn(
-				"w-full h-full bg-gradient-to-br from-[#AB7329] via-[#E5AC61] to-[#AB7329] rounded-2xl shadow-xl p-[2px] border-none cursor-pointer animate-shimmer",
+				"w-full h-full bg-gradient-to-br from-[#AB7329] via-[#E5AC61] to-[#AB7329] rounded-2xl shadow-xl p-[2px] border-none cursor-pointer animate-shimmer max-w-[300px]",
 				isDraggable ? "cursor-grab" : "cursor-default",
 			)}
 		>
@@ -30,7 +30,7 @@ export function CharacterCard({
 					<img
 						src={character.imgSrc}
 						alt={character.imgAlt || "Placeholder"}
-						className="object-cover object-center"
+						className="object-cover h-full w-full object-top"
 					/>
 					<div className="absolute z-10 top-0 left-0 w-full h-full flex flex-row items-start justify-start p-2">
 						<div className="bg-primary text-primary-foreground w-8 h-8 rounded-full flex items-center justify-center font-bold text-xl">
