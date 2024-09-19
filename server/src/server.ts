@@ -3,7 +3,6 @@ import { createServer } from "node:http";
 import { Server, type Socket } from "socket.io";
 import cors from "cors";
 import { v4 as uuidv4 } from "uuid";
-import { characters, clues, GameManager } from "./game";
 import type {
 	ChatMessage,
 	ClientToServerEvents,
@@ -11,6 +10,9 @@ import type {
 	ServerToClientEvents,
 	SocketData,
 } from "@your-org/shared/types";
+import { characters } from "./game/characters";
+import { clues } from "./game/clues";
+import { GameManager } from "./game/game-manager";
 
 const PORT = 3001;
 

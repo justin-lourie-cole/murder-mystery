@@ -1,25 +1,25 @@
 {
   "compilerOptions": {
-    "target": "es2020",
-    "module": "es6",
+    "module": "ESNext",
+    "target": "ESNext",
     "moduleResolution": "node",
     "outDir": "./dist",
-    "rootDir": "src", // Changed from "../" to "src"
+    "rootDir": "./src",
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
     "sourceMap": true,
-    "baseUrl": ".", // Adjusted to current directory
+    "baseUrl": ".",
     "paths": {
-      "@your-org/shared/*": ["../shared/dist/*"] // Updated to point to compiled shared files
+      "@your-org/shared/*": ["../shared/dist/*"]
     }
   },
   "include": [
     "src/**/*.ts",
-    "../shared/dist/**/*.js", // Include compiled shared JS files
-    "../shared/src/**/*.ts"   // Include shared source TS files if necessary
+    "../shared/dist/**/*.js",
+    "../shared/src/**/*.ts"
   ],
   "exclude": [
     "node_modules",

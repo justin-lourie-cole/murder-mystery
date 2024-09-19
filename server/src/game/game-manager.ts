@@ -1,11 +1,12 @@
 import type { GameState, Character, Player } from "@your-org/shared/types";
+import { characters } from "./characters";
 
 export class GameManager {
 	private gameState: GameState;
 	private players: Map<string, Player>;
 	private revealedClueCount: number;
 	private votingOpen: boolean;
-	private murderer: string;
+	private murderer: Character;
 	private clues: string[];
 
 	constructor(characters: Character[], clues: string[]) {
@@ -36,8 +37,14 @@ export class GameManager {
 		this.murderer = this.selectMurderer();
 	}
 
-	private selectMurderer(): string {
-		return "Shalini";
+	private selectMurderer(): Character {
+		const murderer = characters.find(
+			(character) => character.name === "Shalini",
+		);
+		if (!murderer) {
+			throw new Error("Murderer not found");
+		}
+		return murderer;
 	}
 
 	addPlayer(playerId: string, name: string): Player {
@@ -92,7 +99,7 @@ export class GameManager {
 		for (const [playerId, characterName] of Object.entries(
 			this.gameState.votes,
 		)) {
-			if (characterName === this.murderer) {
+			if (characterName === this.murderer.name) {
 				const player = this.players.get(playerId);
 				if (player) {
 					winners.push(player);
@@ -110,7 +117,7 @@ export class GameManager {
 		return Array.from(this.players.values());
 	}
 
-	getMurderer(): string {
+	getMurderer(): Character {
 		return this.murderer;
 	}
 

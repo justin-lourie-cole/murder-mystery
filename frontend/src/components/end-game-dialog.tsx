@@ -5,8 +5,10 @@ import {
 	DialogHeader,
 	DialogTitle,
 	DialogFooter,
+	DialogDescription,
 } from "@/components/ui/dialog";
 import { useGame } from "@/hooks/use-game";
+import { CharacterCard } from "./player/character-card";
 
 export function EndGameDialog() {
 	const { showEndGameDialog, setShowEndGameDialog, winners, murderer } =
@@ -26,8 +28,21 @@ export function EndGameDialog() {
 						Game Results
 					</DialogTitle>
 				</DialogHeader>
+				<DialogDescription className="text-primary">
+					It was {murderer?.name} the whole time!
+				</DialogDescription>
 				<div className="text-primary">
-					<p className="text-xl">The murderer was: {murderer}</p>
+					{murderer ? (
+						<CharacterCard
+							character={murderer}
+							votingOpen={false}
+							handleVote={() => {}}
+							playerHasVoted={false}
+							isDraggable={false}
+						/>
+					) : (
+						<p className="text-xl mt-4">No murderer found</p>
+					)}
 					{winners.length > 0 ? (
 						<>
 							<p className="text-xl mt-4">The winners are:</p>

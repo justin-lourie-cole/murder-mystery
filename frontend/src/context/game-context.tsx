@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import type { ChatMessage, GameState, Player } from "@shared/types";
+import type { ChatMessage, GameState, Player, Character } from "@shared/types";
 
 interface GameContextType {
 	gameState: GameState | null;
@@ -8,7 +8,7 @@ interface GameContextType {
 	isGameMaster: boolean;
 	votingOpen: boolean;
 	winners: Player[];
-	murderer: string | null;
+	murderer: Character | null;
 	showEndGameDialog: boolean;
 	joinGame: (playerName: string) => void;
 	joinAsGameMaster: () => void;

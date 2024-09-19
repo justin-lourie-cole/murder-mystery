@@ -27,7 +27,7 @@ export interface GameState {
 
 export interface GameEndResult {
 	winners: Player[];
-	murderer: string;
+	murderer: Character;
 }
 
 export interface ChatMessage {
