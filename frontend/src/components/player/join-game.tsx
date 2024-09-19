@@ -1,27 +1,37 @@
-import React from "react";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import * as z from "zod";
 import { useGame } from "@/hooks/use-game";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { useToast } from "@/hooks/use-toast";
 import { ShimmeringText } from "@/components/shimmering-text";
+import {
+	Form,
+	FormControl,
+	FormField,
+	FormItem,
+	FormLabel,
+	FormMessage,
+} from "@/components/ui/form";
 
 export function JoinGame() {
 	const { joinGame } = useGame();
-	const { toast } = useToast();
-	const [playerName, setPlayerName] = React.useState("");
 
-	const handleJoinGame = () => {
-		if (playerName.trim()) {
-			joinGame(playerName);
-		} else {
-			toast({
-				title: "Error",
-				description: "Please enter a valid name.",
-				variant: "destructive",
-			});
-		}
-	};
+	const formSchema = z.object({
+		playerName: z.string().min(1, "Player name is required"),
+	});
+
+	const form = useForm<z.infer<typeof formSchema>>({
+		resolver: zodResolver(formSchema),
+		defaultValues: {
+			playerName: "",
+		},
+	});
+
+	function onSubmit(values: z.infer<typeof formSchema>) {
+		joinGame(values.playerName);
+	}
 
 	return (
 		<div className="flex items-center justify-center h-screen">
@@ -32,18 +42,31 @@ export function JoinGame() {
 					</ShimmeringText>
 				</CardHeader>
 				<CardContent>
-					<Input
-						type="text"
-						placeholder="Enter your name"
-						value={playerName}
-						onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-							setPlayerName(e.target.value)
-						}
-						className="mb-4 text-lg"
-					/>
-					<Button onClick={handleJoinGame} className="w-full text-lg">
-						Submit
-					</Button>
+					<Form {...form}>
+						<form onSubmit={form.handleSubmit(onSubmit)}>
+							<FormField
+								control={form.control}
+								name="playerName"
+								render={({ field }) => (
+									<FormItem>
+										<FormLabel className="text-white">Player Name</FormLabel>
+										<FormControl>
+											<Input
+												type="text"
+												{...field}
+												placeholder="Enter your name"
+												className="mb-4 text-lg"
+											/>
+										</FormControl>
+										<Button type="submit" className="w-full text-lg">
+											Submit
+										</Button>
+										<FormMessage />
+									</FormItem>
+								)}
+							/>
+						</form>
+					</Form>
 				</CardContent>
 			</Card>
 		</div>

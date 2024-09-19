@@ -1,13 +1,31 @@
 {
-  "files": [],
-  "references": [
-    { "path": "./tsconfig.app.json" },
-    { "path": "./tsconfig.node.json" }
-  ],
   "compilerOptions": {
-    "baseUrl": ".",
+    "target": "es2020",
+    "module": "es6",
+    "moduleResolution": "node",
+    "outDir": "./dist",
+    "rootDir": "src", // Changed from "../" to "src"
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "sourceMap": true,
+    "baseUrl": ".", // Adjusted to current directory
     "paths": {
-      "@shared/*": ["../shared/*"]
+      "@your-org/shared/*": ["../shared/dist/*"] // Updated to point to compiled shared files
     }
-  }
+  },
+  "include": [
+    "src/**/*.ts",
+    "../shared/dist/**/*.js", // Include compiled shared JS files
+    "../shared/src/**/*.ts"   // Include shared source TS files if necessary
+  ],
+  "exclude": [
+    "node_modules",
+    "dist"
+  ],
+  "references": [
+    { "path": "../shared" }
+  ]
 }

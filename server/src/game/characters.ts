@@ -1,4 +1,4 @@
-import type { Character } from "@shared/types";
+import type { Character } from "@your-org/shared/types";
 
 export const characters: Character[] = [
 	{

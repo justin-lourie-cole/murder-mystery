@@ -3,16 +3,16 @@ import { createServer } from "node:http";
 import { Server, type Socket } from "socket.io";
 import cors from "cors";
 import { v4 as uuidv4 } from "uuid";
+import { characters, clues, GameManager } from "./game/index";
 import type {
-	ServerToClientEvents,
+	ChatMessage,
 	ClientToServerEvents,
 	InterServerEvents,
+	ServerToClientEvents,
 	SocketData,
-	ChatMessage,
-} from "../../shared/types";
-import { characters, clues, GameManager } from "./game";
+} from "@your-org/shared/types";
 
-const PORT = process.env.PORT || 3001;
+const PORT = 3001;
 
 const app = express();
 app.use(cors());

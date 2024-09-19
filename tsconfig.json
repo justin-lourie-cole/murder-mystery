@@ -9,7 +9,7 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./frontend/src/*"],
-      "@shared/*": ["./shared/*"]
+      "@your-org/shared/*": ["./shared/dist/*"] // Ensure this points to compiled shared files
     }
   }
 }
