@@ -3,7 +3,7 @@ import { createServer } from "node:http";
 import { Server, type Socket } from "socket.io";
 import cors from "cors";
 import { v4 as uuidv4 } from "uuid";
-import { characters, clues, GameManager } from "./game/index";
+import { characters, clues, GameManager } from "./game";
 import type {
 	ChatMessage,
 	ClientToServerEvents,

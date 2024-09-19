@@ -1,7 +1,7 @@
 import { useGame } from "@/hooks/use-game";
 import { JoinGame } from "@/components/player/join-game";
-// import { PlayerList } from "@components/player-list";
-// import { CluesList } from "@components/clue-list";
+// import { PlayerList } from "@/components/game-master/player-list";
+// import { CluesList } from "@/components/game-master/clue-list";
 import { Separator } from "@/components/ui/separator";
 import { CharacterList } from "@/components/player/character-list";
 import { EndGameDialog } from "@/components/end-game-dialog";

@@ -21,7 +21,6 @@ import {
 export function MessagePanel() {
 	const { chatMessages, sendChatMessage } = useGame();
 	const scrollAreaRef = useRef<HTMLDivElement>(null);
-	const inputRef = useRef<HTMLInputElement>(null);
 
 	useEffect(() => {
 		const scrollElement = scrollAreaRef.current?.querySelector(
@@ -48,7 +47,6 @@ export function MessagePanel() {
 		sendChatMessage(values.message);
 		form.reset();
 		form.clearErrors();
-		inputRef.current?.focus();
 	}
 
 	return (
@@ -58,8 +56,8 @@ export function MessagePanel() {
 					Messages
 				</ShimmeringText>
 			</CardHeader>
-			<CardContent className="flex flex-col p-4 overflow-hidden">
-				<ScrollArea className="pr-4" ref={scrollAreaRef}>
+			<CardContent className="flex-grow flex flex-col p-4 overflow-hidden">
+				<ScrollArea className="flex-grow pr-4" ref={scrollAreaRef}>
 					<div className="space-y-4">
 						{chatMessages?.map((msg: ChatMessage) => (
 							<div key={msg.id}>
@@ -87,7 +85,6 @@ export function MessagePanel() {
 									<FormItem className="flex-grow">
 										<FormControl>
 											<Input
-												ref={inputRef}
 												{...field}
 												type="text"
 												placeholder="Type your message here..."
